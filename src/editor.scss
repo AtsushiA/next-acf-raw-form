@@ -1,0 +1,40 @@
+
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+.wp-block-next-block-next-acf-raw-form {
+	border: 1px dashed #ccc;
+	padding: 20px;
+	background-color: #f9f9f9;
+	min-height: 100px;
+}
+
+.acf-raw-form-loading {
+	text-align: center;
+	padding: 20px;
+	color: #666;
+}
+
+.acf-raw-form-preview {
+	margin-top: 10px;
+}
+
+.acf-raw-form-content {
+	background-color: #fff;
+	border: 1px solid #ddd;
+	padding: 15px;
+	margin-top: 10px;
+	border-radius: 4px;
+	
+	pre {
+		margin: 0;
+		white-space: pre-wrap;
+		word-wrap: break-word;
+		font-family: monospace;
+		font-size: 12px;
+		color: #333;
+	}
+}

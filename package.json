@@ -1,0 +1,14 @@
+{
+  "name": "next-acf-raw-form",
+  "version": "0.4.0",
+  "description": "A WordPress block that outputs raw ACF field content without escaping, perfect for embedding form codes",
+  "main": "next-acf-raw-form.php",
+  "scripts": {
+    "build": "wp-scripts build",
+    "start": "wp-scripts start",
+    "plugin-zip": "wp-scripts plugin-zip"
+  },
+  "devDependencies": {
+    "@wordpress/scripts": "^30.0.0"
+  }
+}

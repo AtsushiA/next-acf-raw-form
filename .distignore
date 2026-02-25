@@ -1,0 +1,9 @@
+/.git
+/.github
+/node_modules
+/src
+/.gitignore
+/.distignore
+/package.json
+/package-lock.json
+/artefact.xml

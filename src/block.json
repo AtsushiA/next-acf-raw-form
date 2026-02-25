@@ -1,0 +1,27 @@
+
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "next/block-next-acf-raw-form",
+	"version": "0.4.0",
+	"title": "ACF Raw Form Output",
+	"category": "widgets",
+	"icon": "feedback",
+	"description": "Outputs raw ACF field content without escaping, perfect for embedding form codes",
+	"example": {},
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"attributes": {
+		"fieldName": {
+			"type": "string",
+			"default": "application_form"
+		}
+	},
+	"textdomain": "next-acf-raw-form",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
+}
