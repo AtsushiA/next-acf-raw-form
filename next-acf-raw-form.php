@@ -43,7 +43,7 @@ add_action( 'plugins_loaded', 'next_acf_raw_form_check_dependencies' );
 /**
  * Prevent wpautop from wrapping <script> tags inside the block output.
  *
- * wpautop runs at the_content priority 10, after do_blocks at priority 9.
+ * The wpautop filter runs at the_content priority 10, after do_blocks at priority 9.
  * It treats <script> as an inline element and inserts <p> tags around it,
  * breaking embedded form codes. We use a placeholder strategy:
  * 1. Replace the block output with a <div> placeholder before wpautop runs (priority 10).
@@ -61,6 +61,12 @@ add_filter( 'render_block_next/block-next-acf-raw-form', 'next_acf_raw_form_set_
 // Also handle the legacy block name for backward compatibility with existing posts.
 add_filter( 'render_block_telex/block-telex-acf-raw-form', 'next_acf_raw_form_set_placeholder', 10 );
 
+/**
+ * Replaces the block output with a placeholder while the_content is running.
+ *
+ * @param string $block_content Rendered block content.
+ * @return string Placeholder markup, or the original content outside the_content.
+ */
 function next_acf_raw_form_set_placeholder( $block_content ) {
 	// Only apply the placeholder strategy while the_content filter is executing.
 	// Blocks rendered directly in block templates are not processed by wpautop,
@@ -69,7 +75,7 @@ function next_acf_raw_form_set_placeholder( $block_content ) {
 		return $block_content;
 	}
 	global $next_acf_raw_form_placeholder_blocks;
-	$key                                          = 'next-acf-raw-form-ph-' . count( $next_acf_raw_form_placeholder_blocks );
+	$key = 'next-acf-raw-form-ph-' . count( $next_acf_raw_form_placeholder_blocks );
 	$next_acf_raw_form_placeholder_blocks[ $key ] = $block_content;
 	return '<div class="' . esc_attr( $key ) . '"></div>';
 }
@@ -79,6 +85,12 @@ add_filter( 'the_content', 'next_acf_raw_form_restore_placeholder', 11 );
 // This handles block themes where the_content may not fire in the expected context.
 add_filter( 'render_block_core/post-content', 'next_acf_raw_form_restore_placeholder', 99 );
 
+/**
+ * Restores the original block output in place of the placeholders.
+ *
+ * @param string $content Post content containing placeholders.
+ * @return string Content with the original block output restored.
+ */
 function next_acf_raw_form_restore_placeholder( $content ) {
 	global $next_acf_raw_form_placeholder_blocks;
 	if ( empty( $next_acf_raw_form_placeholder_blocks ) ) {
